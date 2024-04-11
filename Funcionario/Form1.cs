@@ -60,6 +60,7 @@ namespace Funcionario
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao cadasrar funcionário : " + ex.Message, "Erro de preenchimento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 
