@@ -37,6 +37,10 @@
             txtCpf = new TextBox();
             txtEndereco = new TextBox();
             btnCadastrar = new Button();
+            btnPesquisar = new Button();
+            label = new Label();
+            lblId = new Label();
+            button1 = new Button();
             SuspendLayout();
             // 
             // label1
@@ -120,19 +124,64 @@
             // btnCadastrar
             // 
             btnCadastrar.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCadastrar.Location = new Point(261, 362);
+            btnCadastrar.Location = new Point(12, 362);
             btnCadastrar.Name = "btnCadastrar";
-            btnCadastrar.Size = new Size(221, 75);
+            btnCadastrar.Size = new Size(116, 63);
             btnCadastrar.TabIndex = 5;
             btnCadastrar.Text = "Cadastrar";
             btnCadastrar.UseVisualStyleBackColor = true;
             btnCadastrar.Click += btnCadastrar_Click;
+            // 
+            // btnPesquisar
+            // 
+            btnPesquisar.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnPesquisar.Location = new Point(141, 362);
+            btnPesquisar.Name = "btnPesquisar";
+            btnPesquisar.Size = new Size(122, 63);
+            btnPesquisar.TabIndex = 6;
+            btnPesquisar.Text = "Pesquisar";
+            btnPesquisar.UseVisualStyleBackColor = true;
+            btnPesquisar.Click += btnPesquisar_Click;
+            // 
+            // label
+            // 
+            label.AutoSize = true;
+            label.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label.Location = new Point(12, 55);
+            label.Name = "label";
+            label.Size = new Size(158, 28);
+            label.TabIndex = 7;
+            label.Text = "Funcionário Id :";
+            // 
+            // lblId
+            // 
+            lblId.AutoSize = true;
+            lblId.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblId.Location = new Point(176, 55);
+            lblId.Name = "lblId";
+            lblId.Size = new Size(0, 28);
+            lblId.TabIndex = 8;
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Location = new Point(635, 52);
+            button1.Name = "button1";
+            button1.Size = new Size(122, 37);
+            button1.TabIndex = 9;
+            button1.Text = "Limpar";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(769, 472);
+            Controls.Add(button1);
+            Controls.Add(lblId);
+            Controls.Add(label);
+            Controls.Add(btnPesquisar);
             Controls.Add(btnCadastrar);
             Controls.Add(txtEndereco);
             Controls.Add(txtCpf);
@@ -162,5 +211,9 @@
         private TextBox txtCpf;
         private TextBox txtEndereco;
         private Button btnCadastrar;
+        private Button btnPesquisar;
+        private Label label;
+        private Label lblId;
+        private Button button1;
     }
 }

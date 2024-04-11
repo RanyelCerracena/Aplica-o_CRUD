@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,6 +65,28 @@ namespace Funcionario
 
                 MessageBox.Show("Erro de conexão com o Banco de Dados - Método cadastrarFuncionario : " + ex.Message, "Erro de conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
+            }
+        }
+
+        public MySqlDataReader localizarFuncionario()
+        {
+            try
+            {
+                MySqlConnection MySqlConexaoBanco = new MySqlConnection(ConexaoBanco.bancoServidor);
+                MySqlConexaoBanco.Open();
+
+                //Select é a função utilizada para localizar os dados do banco de dados
+                string select = $"select id, nome, email, cpf, endereco from funcionarios where cpf = '{cpf}';";
+                MySqlCommand comandoSql = MySqlConexaoBanco.CreateCommand();
+                comandoSql.CommandText = select;
+
+                MySqlDataReader reader = comandoSql.ExecuteReader();
+                return reader;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro de conexão com o Banco de Dados - Método localizarFuncionario : " + ex.Message, "Erro de conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
     }

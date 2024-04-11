@@ -1,3 +1,5 @@
+using MySql.Data.MySqlClient;
+
 namespace Funcionario
 {
     public partial class Form1 : Form
@@ -32,7 +34,7 @@ namespace Funcionario
 
                     if (cadFuncionarios.cadastrarFuncionarios())
                     {
-                        MessageBox.Show($"O funcionário {cadFuncionarios.Nome} foi cadastrado com sucesso!");
+                        MessageBox.Show($"O funcionário {cadFuncionarios.Nome} foi cadastrado com sucesso!", "Cadastro Conluido", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         txtNome.Clear();
                         txtEmail.Clear();
                         txtCpf.Clear();
@@ -42,12 +44,12 @@ namespace Funcionario
                     }
                     else
                     {
-                        MessageBox.Show("Não foi possível cadastrar funcionário");
+                        MessageBox.Show("Não foi possível cadastrar funcionário", "Erro de preenchimento", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Por favor, preencha todos os campos corretamente!");
+                    MessageBox.Show("Por favor, preencha todos os campos corretamente!", "Erro de preenchimento", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtNome.Clear();
                     txtEmail.Clear();
                     txtCpf.Clear();
@@ -57,7 +59,7 @@ namespace Funcionario
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao cadasrar funcionário : " + ex.Message);
+                MessageBox.Show("Erro ao cadasrar funcionário : " + ex.Message, "Erro de preenchimento", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -88,7 +90,7 @@ namespace Funcionario
                         txtBox.Select(txtBox.Text.Length, 0);
                         break;
                     case 13:
-                        if (e.KeyChar !='\u0001')
+                        if (e.KeyChar != '\u0001')
                         {
                             txtEndereco.Focus();
                         }
@@ -104,6 +106,83 @@ namespace Funcionario
             {
                 return;
             }
+        }
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!txtCpf.Text.Equals(""))
+                {
+                    CadastroFuncionarios cadFuncionarios = new CadastroFuncionarios();
+                    cadFuncionarios.Cpf = txtCpf.Text.Replace(".", "").Replace("-", "");
+
+                    MySqlDataReader reader = cadFuncionarios.localizarFuncionario();
+
+                    if (reader != null)
+                    {
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+
+                            lblId.Text = reader["Id"].ToString();
+                            txtNome.Text = reader["nome"].ToString();
+                            txtEmail.Text = reader["email"].ToString();
+                            txtEndereco.Text = reader["endereco"].ToString();
+
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Funcionário não encontrado"); txtNome.Clear();
+                            txtEmail.Clear();
+                            txtEndereco.Clear();
+                            txtCpf.Clear();
+                            txtCpf.Focus();
+                            lblId.Text = "";
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Funcionário não encontrado");
+                        txtNome.Clear();
+                        txtEmail.Clear();
+                        txtEndereco.Clear();
+                        txtCpf.Clear();
+                        txtCpf.Focus();
+                        lblId.Text = "";
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Por favor preencha o campo CPF para realizar a pesquisa! ", "Erro de preenchimento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtNome.Clear();
+                    txtEmail.Clear();
+                    txtEndereco.Clear();
+                    txtCpf.Clear();
+                    txtCpf.Focus();
+                    lblId.Text = "";
+
+                    return;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao encontrar Funcionário : " + ex.Message, "Erro de preenchimento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            txtNome.Clear();
+            txtEmail.Clear();
+            txtEndereco.Clear();
+            txtCpf.Clear();
+            txtCpf.Focus();
+            lblId.Text = "";
         }
     }
 }
