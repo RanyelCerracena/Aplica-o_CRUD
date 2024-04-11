@@ -106,6 +106,7 @@
             txtCpf.Size = new Size(602, 30);
             txtCpf.TabIndex = 3;
             txtCpf.KeyPress += txtCpf_KeyPress;
+            txtCpf.KeyUp += txtCpf_KeyUp;
             // 
             // txtEndereco
             // 

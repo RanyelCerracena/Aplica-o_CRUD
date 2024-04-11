@@ -10,6 +10,11 @@ namespace Funcionario
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
+            if (txtNome.Text.Length == 0 || txtEmail.Text.Length == 0 || txtCpf.Text.Length == 0 || txtEndereco.Text.Length == 0)
+            {
+                MessageBox.Show("Existe um ou mais campos vazios! Preencha-os por favor", "Erro de preenchimento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (txtCpf.Text.Length < 14)
             {
                 MessageBox.Show("Digite o seu CPF completo!", "Erro de preenchimento", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -32,7 +37,7 @@ namespace Funcionario
                         txtEmail.Clear();
                         txtCpf.Clear();
                         txtEndereco.Clear();
-                        txtNome.Focus(); 
+                        txtNome.Focus();
 
                     }
                     else
@@ -82,9 +87,23 @@ namespace Funcionario
                         txtBox.Text += "-";
                         txtBox.Select(txtBox.Text.Length, 0);
                         break;
+                    case 13:
+                        if (e.KeyChar !='\u0001')
+                        {
+                            txtEndereco.Focus();
+                        }
+                        break;
                 }
             }
 
+        }
+
+        private void txtCpf_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ControlKey || e.KeyCode == Keys.A)
+            {
+                return;
+            }
         }
     }
 }
