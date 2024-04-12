@@ -45,6 +45,7 @@ namespace Funcionario
                     else
                     {
                         MessageBox.Show("Não foi possível cadastrar funcionário", "Erro de preenchimento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
                 }
                 else
@@ -55,6 +56,7 @@ namespace Funcionario
                     txtCpf.Clear();
                     txtEndereco.Clear();
                     txtNome.Focus();
+                    return;
                 }
             }
             catch (Exception ex)
@@ -173,6 +175,7 @@ namespace Funcionario
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao encontrar Funcionário : " + ex.Message, "Erro de preenchimento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 
@@ -184,6 +187,93 @@ namespace Funcionario
             txtCpf.Clear();
             txtCpf.Focus();
             lblId.Text = "";
+        }
+
+        private void btnAtualizarDados_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!txtCpf.Text.Equals("") && !txtEmail.Text.Equals("") && !txtEndereco.Text.Equals("") && !txtNome.Text.Equals(""))
+                {
+                    CadastroFuncionarios cadFuncionario = new CadastroFuncionarios();
+                    cadFuncionario.Id = int.Parse(lblId.Text);
+                    cadFuncionario.Email = txtEmail.Text;
+                    cadFuncionario.Endereco = txtEndereco.Text;
+                    cadFuncionario.Nome = txtNome.Text;
+
+                    if (cadFuncionario.atualizarFuncionario())
+                    {
+                        MessageBox.Show("Os dados do funcionário foram atualizadas com sucesso!", "Dados atualizados com sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        txtNome.Clear();
+                        txtEmail.Clear();
+                        txtEndereco.Clear();
+                        txtCpf.Clear();
+                        txtCpf.Focus();
+                        lblId.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Não foi possivel atualizar as informações do funcionário", "Erro ao atualizar os dados", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtNome.Clear();
+                        txtEmail.Clear();
+                        txtEndereco.Clear();
+                        txtCpf.Clear();
+                        txtCpf.Focus();
+                        lblId.Text = "";
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, localize o funcionário que deseja atualizar as informações", "Erro ao atualizar os dados", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtNome.Clear();
+                    txtEmail.Clear();
+                    txtEndereco.Clear();
+                    txtCpf.Clear();
+                    txtCpf.Focus();
+                    lblId.Text = "";
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao atualizar dados do funcionário : " + ex.Message, "Erro ao atualizar os dados", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        private void btnDeletarDados_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!txtCpf.Text.Equals("") && !txtEmail.Text.Equals("") && !txtEndereco.Text.Equals("") && !txtNome.Text.Equals(""))
+                {
+                    CadastroFuncionarios cadFuncionario = new CadastroFuncionarios();
+                    cadFuncionario.Id = int.Parse(lblId.Text);
+                    cadFuncionario.Email = txtEmail.Text;
+                    cadFuncionario.Endereco = txtEndereco.Text;
+                    cadFuncionario.Nome = txtNome.Text;
+                    if (cadFuncionario.deletarDados() == true)
+                    {
+                        MessageBox.Show("Os dados do funcionário foram deletados com sucesso!", "Dados deletados com sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        txtNome.Clear();
+                        txtEmail.Clear();
+                        txtEndereco.Clear();
+                        txtCpf.Clear();
+                        txtCpf.Focus();
+                        lblId.Text = "";
+                    }
+                } else
+                { 
+                    MessageBox.Show("Por favor pesquise o funcionário que deseja deletar", "Erro ao deletar os dados", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Erro ao deletar dados do funcionário : ", "Erro ao atualizar os dados", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
     }
 }

@@ -6,7 +6,13 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>CRUD_Cadastro de Funcionários</AssemblyName>
+    <ApplicationIcon>Briefcase.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Briefcase.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.3.0" />

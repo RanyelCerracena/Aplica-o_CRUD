@@ -89,5 +89,50 @@ namespace Funcionario
                 return null;
             }
         }
+
+        public bool atualizarFuncionario()
+        {
+            try
+            {
+                MySqlConnection MySqlConexaoBanco = new MySqlConnection(ConexaoBanco.bancoServidor);
+                MySqlConexaoBanco.Open();
+
+                string update = $" update funcionarios set email='{Email}', endereco='{Endereco}', nome='{Nome}' where id = '{Id}';";
+
+                MySqlCommand comandoSql = MySqlConexaoBanco.CreateCommand();
+                comandoSql.CommandText = update;
+
+                comandoSql.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro no banco de dados - Método atualizarFuncionario : " +ex.Message);
+                return false;
+            }
+        }
+
+        public bool deletarDados()
+        {
+            try
+            {
+                MySqlConnection MySqlConexaoBanco = new MySqlConnection(ConexaoBanco.bancoServidor);
+                MySqlConexaoBanco.Open();
+
+                string delete = $" delete from funcionarios where id = '{Id}';";
+
+                MySqlCommand comandoSql = MySqlConexaoBanco.CreateCommand();
+                comandoSql.CommandText = delete;
+
+                comandoSql.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Erro no banco de dados - Método deletarDados : " +ex.Message, "Erro de conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
     }
 }

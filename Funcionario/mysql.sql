@@ -17,3 +17,5 @@ create table if not exists funcionarios (
     cpf varchar (14) not null,
     endereco varchar (200) not null
 )default char set utf8mb4;
+
+select * from funcionarios;

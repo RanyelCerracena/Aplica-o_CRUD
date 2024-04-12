@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -41,6 +42,8 @@
             label = new Label();
             lblId = new Label();
             button1 = new Button();
+            btnAtualizarDados = new Button();
+            btnDeletarDados = new Button();
             SuspendLayout();
             // 
             // label1
@@ -173,11 +176,35 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // btnAtualizarDados
+            // 
+            btnAtualizarDados.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAtualizarDados.Location = new Point(279, 362);
+            btnAtualizarDados.Name = "btnAtualizarDados";
+            btnAtualizarDados.Size = new Size(168, 63);
+            btnAtualizarDados.TabIndex = 10;
+            btnAtualizarDados.Text = "Atualizar dados";
+            btnAtualizarDados.UseVisualStyleBackColor = true;
+            btnAtualizarDados.Click += btnAtualizarDados_Click;
+            // 
+            // btnDeletarDados
+            // 
+            btnDeletarDados.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnDeletarDados.Location = new Point(464, 362);
+            btnDeletarDados.Name = "btnDeletarDados";
+            btnDeletarDados.Size = new Size(279, 63);
+            btnDeletarDados.TabIndex = 11;
+            btnDeletarDados.Text = "Deletar dados do banco";
+            btnDeletarDados.UseVisualStyleBackColor = true;
+            btnDeletarDados.Click += btnDeletarDados_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(769, 472);
+            Controls.Add(btnDeletarDados);
+            Controls.Add(btnAtualizarDados);
             Controls.Add(button1);
             Controls.Add(lblId);
             Controls.Add(label);
@@ -191,11 +218,12 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Funcionários";
+            Text = "Cadastro de funcionários";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -215,5 +243,7 @@
         private Label label;
         private Label lblId;
         private Button button1;
+        private Button btnAtualizarDados;
+        private Button btnDeletarDados;
     }
 }
