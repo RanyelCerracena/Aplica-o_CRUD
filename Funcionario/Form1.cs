@@ -137,7 +137,8 @@ namespace Funcionario
                         }
                         else
                         {
-                            MessageBox.Show("Funcionário não encontrado"); txtNome.Clear();
+                            MessageBox.Show("Funcionário não encontrado", "Erro ao localizar funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                            txtNome.Clear();
                             txtEmail.Clear();
                             txtEndereco.Clear();
                             txtCpf.Clear();
@@ -148,7 +149,7 @@ namespace Funcionario
                     }
                     else
                     {
-                        MessageBox.Show("Funcionário não encontrado");
+                        MessageBox.Show("Funcionário não encontrado","Erro ao localizar funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         txtNome.Clear();
                         txtEmail.Clear();
                         txtEndereco.Clear();
